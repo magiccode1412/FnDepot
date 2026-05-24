@@ -1,0 +1,13 @@
+{
+  ".url": {
+    "magic-qinglong.Application": {
+      "allUsers": false,
+      "protocol": "",
+      "title": "青龙面板",
+      "icon": "images/icon_{0}.png",
+      "type": "url",
+      "port": "${wizard_port}",
+      "url": "/"
+    }
+  }
+}

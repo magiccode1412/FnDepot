@@ -1,0 +1,24 @@
+services:
+  magic-fnmessagebot:
+    image: docker.cnb.cool/magiccode1412/transfer/fn-message-bots:latest
+    container_name: magic-fnmessagebot
+    restart: always
+    network_mode: host
+    ports:
+      - ${wizard_app_port}:18080
+    volumes:
+      - ${TRIM_DATA_SHARE_PATHS}/data/logs:/app/data/logs:rw # 日志
+      - ${TRIM_DATA_SHARE_PATHS}/data/cursor:/app/data/cursor:rw 
+      - ${TRIM_DATA_SHARE_PATHS}/config:/app/config:rw  # 配置文件
+      - /usr/trim/var/eventlogger_service:/usr/trim/var/eventlogger_service:ro # 飞牛系统 eventlogger 目录
+      - /var/run/docker.sock:/var/run/docker.sock # docker 
+      - /usr/trim/var/backup_service:/usr/trim/var/backup_service:ro # 飞牛备份
+      - /usr/local/apps/@appdata/trim.media/database:/usr/local/apps/@appdata/trim.media/database:ro # 飞牛影视
+      - /usr/local/apps/@appdata/trim.photos/db:/usr/local/apps/@appdata/trim.photos/db:ro # 飞牛相册
+      - /etc/nut/ups.conf:/etc/nut/ups.conf:ro  # UPS
+      #- /var/apps/fn-scheduler/var/:/var/apps/fn-scheduler/var/:ro  #三方应用-任务计划推送，可不挂载
+      #- /var/lib/dpkg/status:/host/dpkg/status:r  #巡检任务需要，不开巡检任务可以不挂载
+      #- /vol1:/vol1:ro   #需要几个盘挂载几个 巡检任务需要，不开巡检任务可以不挂载
+      #- /vol2:/vol2:ro   #需要几个盘挂载几个 巡检任务需要，不开巡检任务可以不挂载
+    environment: 
+      - TZ=Asia/Shanghai

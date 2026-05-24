@@ -1,0 +1,28 @@
+{
+    "docker-project":
+    {
+        "projects":
+        [
+            {
+                "name": "magic-fnmessagebot",
+                "path": "docker"
+            }
+        ]
+    },
+    "data-share":
+    {
+        "shares":
+        [
+            {
+                "name": "magic-fnmessagebot",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-magic-fnmessagebot"
+                    ]
+                }
+            }
+        ]
+    }
+}

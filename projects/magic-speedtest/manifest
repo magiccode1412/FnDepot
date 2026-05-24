@@ -1,0 +1,14 @@
+appname               = magic-speedtest
+version               = 6.1.0
+display_name          = speedtest
+desc                  = 这是一个非常轻量级的速度测试，用 Javascript 实现，使用 XMLHttpRequest 和 Web Workers。
+platform              = all
+source                = thirdparty
+maintainer            = librespeed
+maintainer_url        = https://github.com/librespeed/speedtest
+distributor           = 魔法代码
+distributor_url       = https://github.com/magiccode1412
+desktop_uidir         = ui
+desktop_applaunchname = magic-speedtest.Application
+service_port          = ${wizard_app_port}
+

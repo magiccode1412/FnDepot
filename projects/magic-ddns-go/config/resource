@@ -1,0 +1,28 @@
+{
+    "docker-project":
+    {
+        "projects":
+        [
+            {
+                "name": "magic-ddnsgo",
+                "path": "docker"
+            }
+        ]
+    },
+    "data-share":
+    {
+        "shares":
+        [
+            {
+                "name": "magic-ddnsgo",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-magic-ddnsgo"
+                    ]
+                }
+            }
+        ]
+    }
+}

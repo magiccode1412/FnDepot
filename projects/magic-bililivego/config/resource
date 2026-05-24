@@ -1,0 +1,28 @@
+{
+    "docker-project":
+    {
+        "projects":
+        [
+            {
+                "name": "magic-bililivego",
+                "path": "docker"
+            }
+        ]
+    },
+    "data-share":
+    {
+        "shares":
+        [
+            {
+                "name": "magic-bililivego",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-magic-bililivego"
+                    ]
+                }
+            }
+        ]
+    }
+}

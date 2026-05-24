@@ -1,0 +1,13 @@
+appname               = magic-ddnsgo
+version               = 6.17.0
+display_name          = ddns-go
+desc                  = 自动获得你的公网 IPv4 或 IPv6 地址，并解析到对应的域名服务
+platform              = all
+source                = thirdparty
+maintainer            = jeessy2
+maintainer_url        = https://github.com/jeessy2/ddns-go
+distributor           = 魔法代码
+distributor_url       = https://github.com/magiccode1412
+desktop_uidir         = ui
+desktop_applaunchname = magic-ddnsgo.Application
+service_port          = ${wizard_app_port}

@@ -1,0 +1,10 @@
+services:
+  magic-speedtest:
+    container_name: magic-speedtest
+    image: docker.cnb.cool/magiccode1412/transfer/speedtest:latest
+    restart: always
+    network_mode: bridge
+    environment:
+      MODE: standalone
+    ports:
+      - "${wizard_app_port}:8080"

@@ -1,0 +1,13 @@
+{
+    ".url": {
+        "magic-bilisync.Application": {
+            "title": "bili-sync",
+            "icon": "images/icon_{0}.png",
+            "type": "iframe",
+            "protocol": "",
+            "port": "${wizard_app_port}",
+            "url": "/",
+            "allUsers": false
+        }
+    }
+}

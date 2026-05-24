@@ -1,0 +1,13 @@
+appname               = magic-qiandao
+version               = 1.0.0
+display_name          = qiandao
+desc                  = "一个HTTP请求定时任务自动执行框架 base on HAR Editor and Tornado Server"
+platform              = all
+source                = thirdparty
+maintainer            = qd-today
+maintainer_url        = https://github.com/qd-today/qd
+distributor           = 魔法代码
+distributor_url       = https://github.com/magiccode1412
+desktop_uidir         = ui
+desktop_applaunchname = magic-qiandao.Application
+service_port          = ${wizard_app_port}

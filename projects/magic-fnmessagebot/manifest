@@ -1,0 +1,13 @@
+appname               = magic-fnmessagebot
+version               = 2.3.0
+display_name          = 日志推送
+desc                  = 飞牛日志监控机器人，专注于实时监控系统事件，精准捕捉关键动态，确保异常与重要信息不遗漏。支持企业微信、钉钉、飞书、Bark、PushPlus等多种漂道灵活推送通知，让系统消息实时触达、一目了然，帮助您随时随地掌握系统运行状态。
+platform              = all
+source                = thirdparty
+maintainer            = Lando
+maintainer_url        = https://github.com/Sunanang/FNMessageBots
+distributor           = 魔法代码
+distributor_url       = https://github.com/magiccode1412/
+desktop_uidir         = ui
+desktop_applaunchname = magic-fnmessagebot.Application
+service_port          = ${wizard_app_port}

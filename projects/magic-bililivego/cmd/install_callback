@@ -1,0 +1,14 @@
+#!/bin/bash
+
+### This script is called after the user installs the application.
+if [ -f "${TRIM_DATA_SHARE_PATHS}/config.yml" ]; then
+    exit 0
+fi
+
+if [ -d "${TRIM_DATA_SHARE_PATHS}/config.yml" ]; then
+    rm -rf "${TRIM_DATA_SHARE_PATHS}/config.yml"
+fi
+
+cp "${TRIM_APPDEST}/config.yml" "${TRIM_DATA_SHARE_PATHS}/config.yml"
+
+exit 0

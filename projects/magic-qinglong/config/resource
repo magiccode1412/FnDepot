@@ -1,0 +1,22 @@
+{
+  "docker-project": {
+    "projects": [
+      {
+        "name": "magic-qinglong",
+        "path": "docker"
+      }
+    ]
+  },
+  "data-share": {
+    "shares": [
+      {
+        "name": "magic-qinglong",
+        "permission": {
+          "rw": [
+            "docker-magic-qinglong"
+          ]
+        }
+      }
+    ]
+  }
+}

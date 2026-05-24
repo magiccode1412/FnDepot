@@ -1,0 +1,13 @@
+{
+    ".url": {
+        "magic-bililivego.Application": {
+            "title": "bililive-go",
+            "icon": "images/icon_{0}.png",
+            "type": "iframe",
+            "protocol": "",
+            "port": "${wizard_app_port}",
+            "url": "/",
+            "allUsers": false
+        }
+    }
+}

@@ -1,0 +1,10 @@
+services:
+  magic-qiandao:
+      restart: always
+      image: docker.cnb.cool/magiccode1412/transfer/qd:latest
+      volumes:
+          - '${TRIM_DATA_SHARE_PATHS}/config:/usr/src/app/config'
+      ports:
+          - '${wizard_app_port}:80'
+      container_name: magic-qiandao
+      network_mode: bridge

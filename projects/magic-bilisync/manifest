@@ -1,0 +1,13 @@
+appname               = magic-bilisync
+version               = 2.11.1
+display_name          = bili-sync
+desc                  = bili-sync 是一款专为 NAS 用户编写的哔哩哔哩同步工具，由 Rust & Tokio 驱动。
+platform              = all
+source                = thirdparty
+maintainer            = amtoaer
+maintainer_url        = https://github.com/amtoaer/bili-sync
+distributor           = 魔法代码
+distributor_url       = https://github.com/magiccode1412/
+desktop_uidir         = ui
+desktop_applaunchname = magic-bilisync.Application
+service_port          = ${wizard_app_port}

@@ -1,0 +1,8 @@
+{
+    "defaults":
+    {
+        "run-as": "package"
+    },
+    "username": "docker-magic-bililivego",
+    "groupname": "docker-magic-bililivego"
+}

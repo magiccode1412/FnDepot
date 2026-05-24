@@ -1,0 +1,8 @@
+{
+    "defaults":
+    {
+        "run-as": "package"
+    },
+    "username": "docker-magic-uptimekuma",
+    "groupname": "docker-magic-uptimekuma"
+}

@@ -1,0 +1,9 @@
+services:
+    magic-ddnsgo:
+        image: docker.cnb.cool/magiccode1412/transfer/ddns-go:latest
+        volumes:
+            - '${TRIM_DATA_SHARE_PATHS}:/root'
+        restart: always
+        container_name: magic-ddnsgo
+        network_mode: host
+        command: ["-l", ":${wizard_app_port}", "-f", "300"]

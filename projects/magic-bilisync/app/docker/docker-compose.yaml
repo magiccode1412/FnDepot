@@ -1,0 +1,16 @@
+services:
+  magic-bilisync:
+    image: docker.cnb.cool/magiccode1412/transfer/bili-sync-rs:latest
+    hostname: magic-bilisync
+    container_name: magic-bilisync
+    restart: always
+    network_mode: bridge
+    ports:
+      - ${wizard_app_port}:12345
+    tty: true
+    user: $uid:$gid
+    logging:
+      driver: "local"
+    volumes:
+      - ${wizard_metadata_path}:/app/.config/bili-sync
+      - /var/apps/magic-bilisync/shares/magic-bilisync/data:/app/video

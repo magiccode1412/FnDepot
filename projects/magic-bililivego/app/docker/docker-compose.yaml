@@ -1,0 +1,11 @@
+services:
+  magic-bililivego:
+    container_name: magic-bililivego
+    restart: always
+    network_mode: bridge
+    ports:
+      - ${wizard_app_port}:8080
+    image: docker.cnb.cool/magiccode1412/transfer/bililive-go:latest
+    volumes:
+      - "/var/apps/magic-bililivego/shares/magic-bililivego/data:/srv/bililive"
+      - "/var/apps/magic-bililivego/shares/magic-bililivego/config.yml:/etc/bililive-go/config.yml"

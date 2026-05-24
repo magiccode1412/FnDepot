@@ -1,0 +1,43 @@
+rpc:
+  enable: true
+  bind: :8080
+debug: false
+interval: 20
+out_put_path: /srv/bililive
+ffmpeg_path: ""
+log:
+  out_put_folder: ./
+  save_last_log: true
+  save_every_log: false
+feature:
+  use_native_flv_parser: false
+  remove_symbol_other_character: false
+live_rooms: []
+out_put_tmpl: ""
+video_split_strategies:
+  on_room_name_changed: false
+  max_duration: 0s
+  max_file_size: 0
+cookies: {}
+on_record_finished:
+  convert_to_mp4: false
+  delete_flv_after_convert: false
+  custom_commandline: ""
+  fix_flv_at_first: true
+timeout_in_us: 60000000
+notify:
+  telegram:
+    enable: false
+    withNotification: true
+    botToken: ""
+    chatID: ""
+  email:
+    enable: false
+    smtpHost: smtp.qq.com
+    smtpPort: 465
+    senderEmail: ""
+    senderPassword: ""
+    recipientEmail: ""
+app_data_path: /srv/bililive/.appdata
+read_only_tool_folder: /opt/bililive/tools
+tool_root_folder: ""

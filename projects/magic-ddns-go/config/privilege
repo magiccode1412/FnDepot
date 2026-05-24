@@ -1,0 +1,8 @@
+{
+    "defaults":
+    {
+        "run-as": "package"
+    },
+    "username": "docker-magic-ddnsgo",
+    "groupname": "docker-magic-ddnsgo"
+}

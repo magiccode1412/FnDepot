@@ -1,0 +1,8 @@
+{
+    "defaults":
+    {
+        "run-as": "package"
+    },
+    "username": "docker-magic-splayer",
+    "groupname": "docker-magic-splayer"
+}

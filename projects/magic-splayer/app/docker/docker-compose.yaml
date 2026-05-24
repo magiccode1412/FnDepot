@@ -1,0 +1,8 @@
+services:
+  magic-splayer:
+    container_name: magic-splayer
+    network_mode: bridge
+    restart: always
+    ports:
+      - ${wizard_app_port}:25884
+    image: docker.cnb.cool/magiccode1412/transfer/splayer:latest

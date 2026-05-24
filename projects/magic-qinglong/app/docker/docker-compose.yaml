@@ -1,0 +1,10 @@
+services:
+  magic-qinglong:
+    container_name: magic-qinglong
+    image: docker.cnb.cool/magiccode1412/transfer/qinglong:latest
+    volumes:
+      - ${TRIM_DATA_SHARE_PATHS}/data:/ql/data
+    ports:
+      - ${wizard_port}:5700
+    restart: always
+    network_mode: bridge

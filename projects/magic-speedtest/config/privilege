@@ -1,0 +1,8 @@
+{
+    "defaults":
+    {
+        "run-as": "package"
+    },
+    "username": "docker-magic-speedtest",
+    "groupname": "docker-magic-speedtest"
+}

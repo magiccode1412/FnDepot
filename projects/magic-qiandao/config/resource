@@ -1,0 +1,28 @@
+{
+    "docker-project":
+    {
+        "projects":
+        [
+            {
+                "name": "magic-qiandao",
+                "path": "docker"
+            }
+        ]
+    },
+    "data-share":
+    {
+        "shares":
+        [
+            {
+                "name": "magic-qiandao",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-magic-qiandao"
+                    ]
+                }
+            }
+        ]
+    }
+}

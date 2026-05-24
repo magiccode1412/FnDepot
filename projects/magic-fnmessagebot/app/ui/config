@@ -1,0 +1,13 @@
+{
+    ".url": {
+        "magic-fnmessagebot.Application": {
+            "title": "日志推送",
+            "icon": "images/icon_{0}.png",
+            "type": "iframe",
+            "protocol": "",
+            "port": "${wizard_app_port}",
+            "url": "/",
+            "allUsers": false
+        }
+    }
+}

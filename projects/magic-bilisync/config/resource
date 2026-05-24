@@ -1,0 +1,28 @@
+{
+    "docker-project":
+    {
+        "projects":
+        [
+            {
+                "name": "magic-bilisync",
+                "path": "docker"
+            }
+        ]
+    },
+    "data-share":
+    {
+        "shares":
+        [
+            {
+                "name": "magic-bilisync",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-magic-bilisync"
+                    ]
+                }
+            }
+        ]
+    }
+}
