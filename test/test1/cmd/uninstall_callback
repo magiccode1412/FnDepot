@@ -1,0 +1,5 @@
+#!/bin/bash
+
+### This script is called after the user uninstalls the application.
+rm -rf ${TRIM_DATA_SHARE_PATHS}
+exit 0

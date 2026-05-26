@@ -1,0 +1,5 @@
+services:
+  webapp:
+    image: busybox
+    command: sleep infinity
+    container_name: test-alpine
