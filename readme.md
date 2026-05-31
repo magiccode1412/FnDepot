@@ -1,6 +1,6 @@
-# FnDepot - 飞牛第三方应用仓库
+# [FnDepot](https://github.com/EWEDLCM/FnDepot) - 飞牛第三方应用仓库
 
-更新日期：2026-05-24
+更新日期：2026-05-31
 
 ## 声明
 
@@ -21,7 +21,7 @@
 | [日志推送](#日志推送) | 2.2.1 | all | 飞牛日志监控机器人，支持企业微信/钉钉/飞书/Bark/PushPlus等多渠道推送 | Lando |
 | [bililivego](#bililivego) | 0.7.39 | all | 支持多种直播平台的直播录制工具 | bililive-go |
 | [bilisync](#bilisync) | 2.11.1 | all | 专为 NAS 用户编写的哔哩哔哩同步工具（Rust & Tokio 驱动） | amtoaer |
-| [ddnsgo](#ddnsgo) | 6.17.0 | all | 自动获得公网 IPv4/IPv6 地址并解析到对应域名服务 | jeessy2 |
+| [ddnsgo](#ddnsgo) | 6.17.1 | all | 自动获得公网 IPv4/IPv6 地址并解析到对应域名服务 | jeessy2 |
 | [qiandao](#qiandao) | 1.0.0 | all | HTTP 请求定时任务自动执行框架（基于 HAR Editor 和 Tornado Server） | qd-today |
 | [青龙面板](#青龙面板) | 2.20.2 | all | 支持 Python3/JavaScript/Shell/TypeScript 的定时任务管理平台 | whyour |
 | [speedtest](#speedtest) | 6.1.0 | all | 轻量级网络速度测试工具（JavaScript 实现） | librespeed |
@@ -58,7 +58,7 @@
 
 ### ddnsgo
 
-- **版本**: 6.17.0
+- **版本**: 6.17.1
 - **平台**: all
 - **维护者**: [jeessy2](https://github.com/jeessy2/ddns-go)
 - **分发者**: [魔法代码](https://github.com/magiccode1412)

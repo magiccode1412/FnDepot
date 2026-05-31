@@ -36,7 +36,7 @@
   "magic-ddnsgo": {
     "display_name": "ddns-go",
     "platform": "all",
-    "version": "6.17.0",
+    "version": "6.17.1",
     "desc": "自动获得你的公网 IPv4 或 IPv6 地址，并解析到对应的域名服务",
     "labels": "DDNS,域名",
     "distributor": "魔法代码",
@@ -63,7 +63,7 @@
     "bug_report_url": "https://github.com/Sunanang/FNMessageBots/issues",
     "isdocker": "true",
     "install_type": "存储空间",
-    "size": "95.0KB",
+    "size": "95.1KB",
     "download_url": "",
     "changelog": ""
   },
