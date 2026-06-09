@@ -1,0 +1,13 @@
+{
+    ".url": {
+        "test2.Application": {
+            "title": "test2",
+            "icon": "images/icon_{0}.png",
+            "type": "url",
+            "protocol": "",
+            "port": "8080",
+            "url": "/",
+            "allUsers": false
+        }
+    }
+}

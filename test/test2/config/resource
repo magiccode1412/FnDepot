@@ -1,0 +1,38 @@
+{
+    "docker-project":
+    {
+        "projects":
+        [
+            {
+                "name": "test2",
+                "path": "docker"
+            }
+        ]
+    },
+    "data-share":
+    {
+        "shares":
+        [
+            {
+                "name": "test2",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-test2"
+                    ]
+                }
+            },
+            {
+                "name": "test2/data",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-test2"
+                    ]
+                }
+            }
+        ]
+    }
+}

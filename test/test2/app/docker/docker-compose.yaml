@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  webapp:
+    image: examples/web
+    ports:
+      - "{host_port}:{container_port}"
+    volumes:
+      - "/var/apps/test2/shares/test2/data:/data"
