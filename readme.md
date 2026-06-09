@@ -1,6 +1,13 @@
+<div align="center">
+
 # [FnDepot](https://github.com/EWEDLCM/FnDepot) - 飞牛第三方应用仓库
 
+<a href="https://github.com/magiccode1412/FnDepot" target="_blank">Github</a>
+
 更新日期：2026-05-31
+
+</div>
+
 
 ## 声明
 
