@@ -2,4 +2,12 @@
 
 ### This script is called before the user change environment variables in application setting page.
 
+# 读取当前配置的端口并输出到日志，用于调试
+COMPOSE_FILE="${TRIM_APPDEST}/docker/docker-compose.yaml"
+
+if [ -f "$COMPOSE_FILE" ]; then
+    CURRENT_PORT=$(grep -oP '\d+(?=:80)' "$COMPOSE_FILE" | head -1)
+    echo "当前服务端口: ${CURRENT_PORT:-8080}"
+fi
+
 exit 0

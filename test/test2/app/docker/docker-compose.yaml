@@ -1,9 +1,13 @@
 version: "3.8"
 
 services:
-  webapp:
-    image: examples/web
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
     ports:
-      - "{host_port}:{container_port}"
+      - "{host_port}:80"
     volumes:
-      - "/var/apps/test2/shares/test2/data:/data"
+      - "/var/apps/magic-nginx/shares/nginx/conf.d:/etc/nginx/conf.d"
+      - "/var/apps/magic-nginx/shares/nginx/html:/usr/share/nginx/html"
+      - "/var/apps/magic-nginx/shares/nginx/logs:/var/log/nginx"
+    restart: unless-stopped

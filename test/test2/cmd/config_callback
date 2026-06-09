@@ -2,4 +2,22 @@
 
 ### This script is called after the user change environment variables in application setting page.
 
+# 获取用户在配置向导中设置的新端口号
+NEW_HOST_PORT="${host_port}"
+
+# 如果用户没有修改端口（环境变量为空），则不处理
+if [ -z "$NEW_HOST_PORT" ]; then
+    exit 0
+fi
+
+# 更新 docker-compose.yaml 中的端口配置
+COMPOSE_FILE="${TRIM_APPDEST}/docker/docker-compose.yaml"
+
+if [ -f "$COMPOSE_FILE" ]; then
+    # 使用 sed 替换当前的端口配置（格式为 xxx:80）
+    sed -i "s/[0-9]\+:80/${NEW_HOST_PORT}:80/g" "$COMPOSE_FILE"
+    echo "Nginx 服务端口已更新为: $NEW_HOST_PORT"
+    echo "请重启应用使配置生效"
+fi
+
 exit 0

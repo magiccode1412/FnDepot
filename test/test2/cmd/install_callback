@@ -2,4 +2,71 @@
 
 ### This script is called after the user installs the application.
 
+# 获取用户在安装向导中设置的端口号
+HOST_PORT="${host_port:-8080}"
+
+# 更新 docker-compose.yaml 中的端口配置
+COMPOSE_FILE="${TRIM_APPDEST}/docker/docker-compose.yaml"
+
+if [ -f "$COMPOSE_FILE" ]; then
+    # 使用 sed 替换端口占位符
+    sed -i "s/{host_port}/${HOST_PORT}/g" "$COMPOSE_FILE"
+    echo "Nginx 服务端口已设置为: $HOST_PORT"
+fi
+
+# 创建默认的 Nginx 配置文件
+CONF_DIR="/var/apps/magic-nginx/shares/nginx/conf.d"
+HTML_DIR="/var/apps/magic-nginx/shares/nginx/html"
+LOGS_DIR="/var/apps/magic-nginx/shares/nginx/logs"
+
+mkdir -p "$CONF_DIR" "$HTML_DIR" "$LOGS_DIR"
+
+# 创建默认欢迎页面
+cat > "$HTML_DIR/index.html" << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Nginx!</title>
+    <style>
+        body { 
+            width: 35em; 
+            margin: 0 auto; 
+            font-family: Tahoma, Verdana, Arial, sans-serif; 
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to nginx on fnOS!</h1>
+<p>If you see this page, the nginx web server is successfully installed and working.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using fnOS.</em></p>
+</body>
+</html>
+EOF
+
+# 创建默认站点配置
+cat > "$CONF_DIR/default.conf" << EOF
+server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+}
+EOF
+
+echo "Nginx 安装完成！"
+
 exit 0

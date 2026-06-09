@@ -1,10 +1,11 @@
-appname               = test2
+appname               = magic-nginx
 version               = 1.0.0
-display_name          = display-name
-desc                  = app-description
+display_name          = Nginx Web Server
+desc                  = High-performance HTTP server and reverse proxy server
 arch                  = x86_64
 source                = thirdparty
 maintainer            = your-name
 distributor           = your-name
 desktop_uidir         = ui
-desktop_applaunchname = test2.Application
+desktop_applaunchname = nginx.Application
+service_port          = 8080

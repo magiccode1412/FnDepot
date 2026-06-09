@@ -3,6 +3,6 @@
     {
         "run-as": "package"
     },
-    "username": "docker-test2",
-    "groupname": "docker-test2"
+    "username": "docker-magic-nginx",
+    "groupname": "docker-magic-nginx"
 }

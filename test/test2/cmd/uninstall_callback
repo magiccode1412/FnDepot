@@ -2,4 +2,24 @@
 
 ### This script is called after the user uninstalls the application.
 
+# 获取用户在卸载向导中的选择
+DELETE_DATA="${delete_data:-keep}"
+
+if [ "$DELETE_DATA" = "delete" ]; then
+    # 用户选择删除数据
+    DATA_DIR="/var/apps/magic-nginx/shares/nginx"
+    
+    if [ -d "$DATA_DIR" ]; then
+        rm -rf "$DATA_DIR"
+        echo "已删除所有 Nginx 数据"
+    fi
+    
+    echo "Nginx 数据已被清除"
+else
+    # 用户选择保留数据
+    echo "Nginx 数据已保留，重新安装时可恢复使用"
+fi
+
+echo "Nginx 卸载完成！"
+
 exit 0

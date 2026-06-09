@@ -4,7 +4,7 @@
         "projects":
         [
             {
-                "name": "test2",
+                "name": "magic-nginx",
                 "path": "docker"
             }
         ]
@@ -14,22 +14,42 @@
         "shares":
         [
             {
-                "name": "test2",
+                "name": "nginx",
                 "permission":
                 {
                     "rw":
                     [
-                        "docker-test2"
+                        "docker-magic-nginx"
                     ]
                 }
             },
             {
-                "name": "test2/data",
+                "name": "nginx/conf.d",
                 "permission":
                 {
                     "rw":
                     [
-                        "docker-test2"
+                        "docker-magic-nginx"
+                    ]
+                }
+            },
+            {
+                "name": "nginx/html",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-magic-nginx"
+                    ]
+                }
+            },
+            {
+                "name": "nginx/logs",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-magic-nginx"
                     ]
                 }
             }
