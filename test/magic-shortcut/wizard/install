@@ -1,0 +1,32 @@
+[
+    {
+        "stepTitle": "欢迎使用",
+        "items": [
+            {
+                "type": "tips",
+                "helpText": "欢迎使用快捷方式管理器！<br><br>本应用允许您在飞牛控制台桌面添加自定义图标和快捷方式。<br>安装完成后，您可以通过管理界面添加、编辑或删除自定义快捷方式。"
+            }
+        ]
+    },
+    {
+        "stepTitle": "端口设置",
+        "items": [
+            {
+                "type": "text",
+                "field": "wizard_app_port",
+                "label": "服务端口",
+                "initValue": "8090",
+                "rules": [
+                    {
+                        "required": true,
+                        "message": "请输入端口号"
+                    },
+                    {
+                        "pattern": "^[0-9]+$",
+                        "message": "端口号必须是数字（1024-65535）"
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,314 @@
+#!/bin/bash
+
+### This script is called after the user installs the application.
+### 错误日志会通过 TRIM_TEMP_LOGFILE 展示给用户 (V1.1.8+)
+
+LOG_FILE="${TRIM_TEMP_LOGFILE:-/tmp/magic-shortcut-install.log}"
+
+log() {
+    echo "$1"
+    echo "$1" >> "${LOG_FILE}" 2>/dev/null
+}
+
+log_err() {
+    echo "ERROR: $1" >&2
+    echo "ERROR: $1" >> "${LOG_FILE}" 2>/dev/null
+}
+
+SERVER_DIR="${TRIM_APPDEST}/server"
+VENV_DIR="$SERVER_DIR/venv"
+UI_DIR="${TRIM_APPDEST}/ui"
+
+# 国内 pip 镜像源（加速依赖安装）
+PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+PIP_TRUSTED_HOST="pypi.tuna.tsinghua.edu.cn"
+IMAGES_DIR="$UI_DIR/images"
+
+# 安全获取 DATA_DIR（处理 TRIM_DATA_SHARE_PATHS 为空的情况）
+if [ -n "$TRIM_DATA_SHARE_PATHS" ] && [ "$TRIM_DATA_SHARE_PATHS" != ":" ]; then
+    DATA_DIR="${TRIM_DATA_SHARE_PATHS%%:*}"
+else
+    DATA_DIR="${TRIM_PKGVAR}/data"
+fi
+
+log "=========================================="
+log "正在初始化快捷方式管理器..."
+log "=========================================="
+
+# 显示环境信息
+log "TRIM_APPDEST: ${TRIM_APPDEST:-<未设置>}"
+log "TRIM_USERNAME: ${TRIM_USERNAME:-<未设置>}"
+log "TRIM_GROUPNAME: ${TRIM_GROUPNAME:-<未设置>}"
+log "DATA_DIR: ${DATA_DIR}"
+log "TRIM_PKGVAR: ${TRIM_PKGVAR:-<未设置>}"
+
+# 创建必要的目录
+log "[1/5] 创建必要目录..."
+
+if [ -z "$DATA_DIR" ]; then
+    log_err "DATA_DIR 为空，无法继续"
+    exit 1
+fi
+
+mkdir -p "$DATA_DIR" || {
+    log_err "无法创建数据目录: $DATA_DIR"
+    exit 1
+}
+mkdir -p "$IMAGES_DIR" || {
+    log_err "无法创建图片目录: $IMAGES_DIR"
+    exit 1
+}
+mkdir -p "${TRIM_PKGVAR}" || {
+    log_err "无法创建 PKGVAR 目录: ${TRIM_PKGVAR}"
+    exit 1
+}
+log "✓ 目录创建完成"
+
+# 创建虚拟环境
+log "[2/5] 检查 Python 虚拟环境..."
+
+# 获取 python3 的绝对路径（解决 PATH 环境变量问题）
+PYTHON3_BIN=$(which python3 2>/dev/null || readlink -f $(command -v python3) 2>/dev/null || echo "/usr/bin/python3")
+if [ ! -x "$PYTHON3_BIN" ]; then
+    for p in /usr/bin/python3 /usr/local/bin/python3; do
+        if [ -x "$p" ]; then PYTHON3_BIN="$p"; break; fi
+    done
+fi
+
+log "Python 路径: ${PYTHON3_BIN}"
+if [ ! -x "$PYTHON3_BIN" ]; then
+    log_err "无法找到可执行的 Python 3"
+    exit 1
+fi
+
+PYTHON_VERSION=$("$PYTHON3_BIN" --version 2>&1)
+log "检测到 Python: ${PYTHON_VERSION}"
+
+# 检查 venv 模块是否可用
+if ! "$PYTHON3_BIN" -c "import venv; print(venv.__file__)" 2>/dev/null; then
+    log_err "Python venv 模块不可用，请确保已安装 python3-venv 包"
+    exit 1
+fi
+
+# 定义安装 pip 的辅助函数（使用 python3 -m pip 方式，更可靠）
+install_pip_to_venv() {
+    local venv_py="$1"
+    log "  尝试方法1: ensurepip..."
+    if "$venv_py" -m ensurepip --default-pip --upgrade >>"${LOG_FILE}" 2>&1; then
+        log "  ✓ ensurepip 成功"
+        return 0
+    fi
+    
+    log "  尝试方法2: get-pip.py (需要网络)..."
+    if command -v curl &> /dev/null; then
+        GETPIP_TMP="${TRIM_PKGVAR:-/tmp}/get-pip.py"
+        curl -sS https://bootstrap.pypa.io/get-pip.py -o "$GETPIP_TMP" >>"${LOG_FILE}" 2>&1 && \
+            "$venv_py" "$GETPIP_TMP" >>"${LOG_FILE}" 2>&1 && \
+            rm -f "$GETPIP_TMP" && {
+            log "  ✓ get-pip.py 成功"
+            return 0
+        }
+    fi
+    
+    # 尝试使用系统 pip 安装到 venv
+    log "  尝试方法3: 使用系统 pip..."
+    if "$PYTHON3_BIN" -m pip install -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST" --target="$VENV_DIR/lib/$("$venv_py" -c 'import sys; print(f"python{sys.version_info.major}.{sys.version_info.minor}")')/site-packages" pip >>"${LOG_FILE}" 2>&1; then
+        # 创建 pip 可执行文件链接
+        "$venv_py" -m pip install -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST" --upgrade pip >>"${LOG_FILE}" 2>&1 || true
+        log "  ✓ 系统 pip 注入成功"
+        return 0
+    fi
+    
+    return 1
+}
+
+# 验证 pip 是否真正可用
+check_pip_works() {
+    local venv_py="$1"
+    "$venv_py" -m pip --version >>"${LOG_FILE}" 2>&1 || return 1
+}
+
+if [ ! -d "$VENV_DIR" ]; then
+    log "  创建虚拟环境..."
+    
+    # 策略：先尝试带 pip 创建，如果失败再不带 pip
+    VENV_CREATED=0
+    
+    # 方法 A：直接创建（包含 pip）
+    if "$PYTHON3_BIN" -m venv --clear "$VENV_DIR" 2>>"${LOG_FILE}"; then
+        VENV_CREATED=1
+        log "  venv 已创建（方法A: 默认）"
+        
+        # 验证 python 存在
+        if [ ! -x "$VENV_DIR/bin/python3" ]; then
+            log_err "虚拟环境的 python3 不存在"
+            rm -rf "$VENV_DIR"
+            VENV_CREATED=0
+        fi
+    fi
+    
+    # 方法 B：如果默认创建失败或无 pip，用 --without-pip 再试
+    if [ $VENV_CREATED -eq 0 ] || ! check_pip_works "$VENV_DIR/bin/python3"; then
+        if [ $VENV_CREATED -eq 1 ]; then
+            log "  默认 venv 无可用 pip，重新创建（不带 pip）..."
+            rm -rf "$VENV_DIR"
+        else
+            log "  默认方式失败，尝试不带 pip..."
+        fi
+        
+        "$PYTHON3_BIN" -m venv --clear --without-pip "$VENV_DIR" 2>>"${LOG_FILE}" || {
+            log_err "无法创建虚拟环境: $VENV_DIR"
+            exit 1
+        }
+        
+        [ ! -x "$VENV_DIR/bin/python3" ] && { log_err "python3 不可用"; exit 1; }
+        
+        # 手动安装 pip
+        install_pip_to_venv "$VENV_DIR/bin/python3" || {
+            log_err "所有 pip 安装方法均失败"
+            exit 1
+        }
+    fi
+    
+    log "✓ 虚拟环境已创建"
+else
+    log "✓ 虚拟环境已存在"
+    
+    # 确保 pip 可用（即使是已存在的 venv 也检查）
+    if ! check_pip_works "$VENV_DIR/bin/python3"; then
+        log "  已存在的 venv 中 pip 不可用，尝试修复..."
+        install_pip_to_venv "$VENV_DIR/bin/python3" || {
+            log_err "无法修复 pip"
+            exit 1
+        }
+    fi
+fi
+
+# 最终验证 pip 可用性
+if ! check_pip_works "$VENV_DIR/bin/python3"; then
+    log_err "pip 安装验证失败！"
+    log "  venv bin 目录内容:"
+    ls -la "$VENV_DIR/bin/" >> "${LOG_FILE}" 2>&1
+    log "  pip version 测试:"
+    "$VENV_DIR/bin/python3" -m pip --version >> "${LOG_FILE}" 2>&1
+    exit 1
+fi
+
+PIP_VER=$("$VENV_DIR/bin/python3" -m pip --version 2>&1)
+log "✓ pip 可用: ${PIP_VER}"
+
+# 升级 pip 以提高稳定性
+"$VENV_DIR/bin/python3" -m pip install -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST" --upgrade --no-cache-dir pip 2>>"${LOG_FILE}" || true
+
+# 安装依赖（内联依赖列表，不依赖外部 requirements.txt 文件）
+log "[3/5] 安装 Python 依赖..."
+
+# 定义依赖包（格式："包名==版本"）
+# 注意: 不使用 uvicorn[standard]，避免 C 扩展(uvloop/httptools) 编译失败
+PKGS=(
+    "fastapi==0.104.1"
+    "uvicorn==0.30.1"
+    "python-multipart==0.0.6"
+    "Pillow==10.1.0"
+    "pydantic==2.5.2"
+)
+
+# 先尝试从 requirements.txt 文件读取（如果存在），否则使用内置列表
+REQUIREMENTS_FILE="$SERVER_DIR/requirements.txt"
+if [ -f "$REQUIREMENTS_FILE" ]; then
+    log "  使用 requirements.txt 文件..."
+    PKGS=()
+    while IFS= read -r line || [ -n "$line" ]; do
+        # 跳过空行和注释
+        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+        PKGS+=("$line")
+    done < "$REQUIREMENTS_FILE"
+fi
+
+TOTAL=${#PKGS[@]}
+log "  需要安装 ${TOTAL} 个依赖包..."
+
+# 逐个安装依赖（更稳定，便于定位单个包的问题）
+FAILED_PKGS=()
+for pkg in "${PKGS[@]}"; do
+    log "  安装: ${pkg}"
+    
+    MAX_RETRIES=3
+    RETRY_COUNT=0
+    
+    while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+        if timeout 120 "$VENV_DIR/bin/python3" -m pip install -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST" --no-cache-dir "${pkg}" >>"${LOG_FILE}" 2>&1; then
+            log "    ✓ ${pkg} 安装成功"
+            break
+        else
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                log "    失败，重试中... ($RETRY_COUNT/$MAX_RETRIES)"
+                sleep 2
+            else
+                FAILED_PKGS+=("$pkg")
+                log_err "${pkg} 安装失败！"
+            fi
+        fi
+    done
+done
+
+if [ ${#FAILED_PKGS[@]} -gt 0 ]; then
+    log_err "以下依赖安装失败:"
+    for fpkg in "${FAILED_PKGS[@]}"; do
+        log_err "  - ${fpkg}"
+    done
+    exit 1
+fi
+
+log "✓ 所有 ${TOTAL} 个依赖安装成功"
+
+# 验证关键依赖是否安装成功
+log "[4/5] 验证安装结果..."
+
+FASTAPI_CHECK=$("$VENV_DIR/bin/python3" -c "import fastapi; print(fastapi.__version__)" 2>&1)
+if [ $? -eq 0 ]; then
+    log "  ✓ FastAPI 版本: ${FASTAPI_CHECK}"
+else
+    log_err "FastAPI 验证失败: ${FASTAPI_CHECK}"
+    exit 1
+fi
+
+PILLOW_CHECK=$("$VENV_DIR/bin/python3" -c "from PIL import Image; print('OK')" 2>&1)
+if [ $? -eq 0 ]; then
+    log "  ✓ Pillow 已安装"
+else
+    log "⚠ 警告：Pillow 未正确安装 (图标处理功能将受限): ${PILLOW_CHECK}"
+    # Pillow 对于基本功能是可选的，不阻塞安装
+fi
+
+# 初始化数据备份文件
+log "[5/5] 初始化数据文件..."
+DATA_FILE="$DATA_DIR/shortcuts.json"
+
+if [ ! -f "$DATA_FILE" ]; then
+    echo '{"shortcuts": []}' > "$DATA_FILE" || {
+        log_err "无法创建数据文件: $DATA_FILE"
+        exit 1
+    }
+    log "✓ 数据文件已创建"
+else
+    log "✓ 数据文件已存在"
+fi
+
+# 设置正确的权限和所有权
+log ""
+log "设置权限..."
+chown -R "${TRIM_USERNAME:-root}:${TRIM_GROUPNAME:-root}" "$DATA_DIR" 2>/dev/null || true
+chmod -R 755 "$IMAGES_DIR" 2>/dev/null || true
+chmod -R 755 "$TRIM_PKGVAR" 2>/dev/null || true
+log "✓ 权限设置完成"
+
+log ""
+log "=========================================="
+log "✅ 快捷方式管理器安装完成！"
+log "=========================================="
+log ""
+log "服务将在 http://0.0.0.0:${SERVER_PORT:-8090} 上运行"
+
+exit 0

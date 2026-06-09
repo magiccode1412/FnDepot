@@ -1,0 +1,10 @@
+appname               = magic-shortcut
+version               = 1.0.0
+display_name          = 快捷方式管理器
+desc                  = 在飞牛控制台桌面添加自定义快捷方式图标，支持自定义图标、URL地址和协议设置
+arch                  = x86_64
+source                = thirdparty
+maintainer            = your-name
+distributor           = your-name
+service_port          = ${wizard_app_port}
+os_min_version        = 1.1.31

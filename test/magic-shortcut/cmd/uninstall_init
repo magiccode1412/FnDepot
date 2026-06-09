@@ -1,0 +1,22 @@
+#!/bin/bash
+
+### This script is called before the user uninstalls the application.
+
+echo "正在准备卸载快捷方式管理器..."
+
+# 停止应用（如果正在运行）
+if [ -f "${TRIM_PKGVAR}/app.pid" ]; then
+    echo "停止运行中的应用..."
+    # 系统会自动调用 stop 命令，这里只是提示
+fi
+
+# 统计当前自定义快捷方式数量
+CONFIG_FILE="${TRIM_APPDEST}/ui/config"
+if [ -f "$CONFIG_FILE" ]; then
+    CUSTOM_COUNT=$(grep -c '"custom_' "$CONFIG_FILE" 2>/dev/null || echo "0")
+    echo "当前有 $CUSTOM_COUNT 个自定义快捷方式"
+fi
+
+echo "卸载前准备完成！"
+
+exit 0

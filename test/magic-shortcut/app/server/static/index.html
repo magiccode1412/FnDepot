@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快捷方式管理器</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="header-left">
+                <h1>🎯 快捷方式管理器</h1>
+                <span class="subtitle">在飞牛控制台桌面添加自定义图标</span>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-primary" onclick="showAddModal()">
+                    + 添加新快捷方式
+                </button>
+                <button class="btn btn-secondary" onclick="loadShortcuts()">
+                    刷新
+                </button>
+            </div>
+        </header>
+
+        <!-- 状态提示 -->
+        <div id="statusMessage" class="status-message hidden"></div>
+
+        <!-- 快捷方式列表 -->
+        <main class="main-content">
+            <div id="shortcutsGrid" class="shortcuts-grid">
+                <!-- 动态加载 -->
+            </div>
+
+            <!-- 空状态提示 -->
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">📱</div>
+                <p>还没有添加任何快捷方式</p>
+                <p class="empty-hint">点击上方的"添加新快捷方式"按钮开始创建</p>
+            </div>
+        </main>
+
+        <!-- 底部统计 -->
+        <footer class="footer">
+            <span>共 <strong id="shortcutCount">0</strong> 个快捷方式</span>
+        </footer>
+    </div>
+
+    <!-- 添加/编辑弹窗 -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-overlay" onclick="hideModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">添加新快捷方式</h2>
+                <button class="close-btn" onclick="hideModal()">&times;</button>
+            </div>
+            
+            <form id="shortcutForm" onsubmit="handleSubmit(event)">
+                <input type="hidden" id="editId" value="">
+                
+                <div class="form-group">
+                    <label for="title">显示名称 <span class="required">*</span></label>
+                    <input type="text" id="title" name="title" required 
+                           placeholder="例如：Google、GitHub"
+                           maxlength="50">
+                </div>
+
+                <div class="form-group">
+                    <label for="url">目标地址 <span class="required">*</span></label>
+                    <input type="text" id="url" name="url" required 
+                           placeholder="例如：www.google.com 或 https://example.com/path">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group flex-1">
+                        <label for="protocol">协议</label>
+                        <select id="protocol" name="protocol">
+                            <option value="">自动检测</option>
+                            <option value="https">https (推荐)</option>
+                            <option value="http">http</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group flex-1">
+                        <label for="port">端口号（可选）</label>
+                        <input type="text" id="port" name="port" 
+                               placeholder="例如：8080"
+                               pattern="[0-9]*"
+                               maxlength="5">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="iconFile">图标上传 <span class="required">*</span></label>
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="iconFile" accept="image/*" 
+                               onchange="handleIconUpload(this)" hidden>
+                        <div id="uploadPlaceholder" onclick="document.getElementById('iconFile').click()">
+                            <span class="upload-icon">📁</span>
+                            <span>点击选择图片文件</span>
+                            <small>支持 PNG、JPG、GIF、ICO、WebP，建议 ≥128px</small>
+                        </div>
+                        <div id="uploadPreview" class="hidden">
+                            <img id="previewImage" src="" alt="预览图">
+                            <button type="button" class="btn btn-small" onclick="clearUpload()">清除</button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="iconFilename" name="iconFilename" required>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="allUsers" checked>
+                        所有用户可见
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="hideModal()">取消</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 确认删除弹窗 -->
+    <div id="deleteModal" class="modal hidden">
+        <div class="modal-overlay" onclick="hideDeleteModal()"></div>
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2>确认删除</h2>
+                <button class="close-btn" onclick="hideDeleteModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>确定要删除此快捷方式吗？</p>
+                <p class="text-muted">相关联的图标文件也会被删除，操作不可恢复。</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="hideDeleteModal()">取消</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">删除</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

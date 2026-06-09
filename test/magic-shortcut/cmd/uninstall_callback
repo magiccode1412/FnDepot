@@ -1,0 +1,46 @@
+#!/bin/bash
+
+### This script is called after the user uninstalls the application.
+
+DELETE_DATA="${delete_data:-keep}"
+
+if [ "$DELETE_DATA" = "delete" ]; then
+    UI_DIR="${TRIM_APPDEST}/ui"
+    IMAGES_DIR="$UI_DIR/images"
+    DATA_DIR="$TRIM_DATA_SHARE_PATHS"
+    
+    # 删除用户上传的自定义图标
+    if [ -d "$IMAGES_DIR" ]; then
+        find "$IMAGES_DIR" -name "icon_custom_*" -delete
+        echo "已删除所有自定义图标"
+    fi
+    
+    # 删除数据备份
+    if [ -f "$DATA_DIR/shortcuts.json" ]; then
+        rm -f "$DATA_DIR/shortcuts.json"
+        echo "已删除备份数据"
+    fi
+    
+    # 恢复原始 config（只保留应用自身的入口）
+    CONFIG_FILE="$UI_DIR/config"
+    cat > "$CONFIG_FILE" << 'EOF'
+{
+    ".url": {
+        "magic-shortcut.Application": {
+            "title": "快捷方式管理器",
+            "icon": "images/icon_{0}.png",
+            "type": "url",
+            "protocol": "http",
+            "port": "${service_port}",
+            "url": "/",
+            "allUsers": true
+        }
+    }
+}
+EOF
+    echo "配置文件已重置"
+else
+    echo "用户数据已保留"
+fi
+
+exit 0

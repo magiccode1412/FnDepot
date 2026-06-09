@@ -1,0 +1,31 @@
+#!/bin/bash
+
+### This script is called before the user changes configuration in application settings.
+
+echo "正在读取当前配置状态..."
+
+# 显示当前配置信息
+CONFIG_FILE="${TRIM_APPDEST}/ui/config"
+
+if [ -f "$CONFIG_FILE" ]; then
+    TOTAL_COUNT=$(grep -c '".Application"' "$CONFIG_FILE" 2>/dev/null || echo "0")
+    CUSTOM_COUNT=$(grep -c '"custom_' "$CONFIG_FILE" 2>/dev/null || echo "0")
+    
+    echo "配置文件状态:"
+    echo "  - 总入口数: $TOTAL_COUNT"
+    echo "  - 自定义快捷方式: $CUSTOM_COUNT"
+else
+    echo "警告：未找到配置文件"
+fi
+
+# 显示数据目录状态
+DATA_DIR="${TRIM_DATA_SHARE_PATHS%%:*}"
+DATA_FILE="$DATA_DIR/shortcuts.json"
+
+if [ -f "$DATA_FILE" ]; then
+    echo "  - 数据备份: 已创建"
+else
+    echo "  - 数据备份: 未创建"
+fi
+
+exit 0

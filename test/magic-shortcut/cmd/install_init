@@ -1,0 +1,73 @@
+#!/bin/bash
+
+### This script is called before the user installs the application.
+### 用于安装前检查，错误会通过 TRIM_TEMP_LOGFILE 展示给用户
+
+LOG_FILE="${TRIM_TEMP_LOGFILE:-/tmp/magic-shortcut-init.log}"
+
+log() {
+    echo "$1"
+    echo "$1" >> "${LOG_FILE}" 2>/dev/null
+}
+
+log_err() {
+    echo "ERROR: $1" >&2
+    echo "ERROR: $1" >> "${LOG_FILE}" 2>/dev/null
+}
+
+log "正在准备安装快捷方式管理器..."
+
+# 获取 python3 的绝对路径
+PYTHON3_BIN=$(which python3 2>/dev/null || readlink -f $(command -v python3) 2>/dev/null || echo "/usr/bin/python3")
+if [ ! -x "$PYTHON3_BIN" ]; then
+    for p in /usr/bin/python3 /usr/local/bin/python3; do
+        if [ -x "$p" ]; then PYTHON3_BIN="$p"; break; fi
+    done
+fi
+
+# 检查 Python 3 是否可用
+if [ ! -x "$PYTHON3_BIN" ]; then
+    log_err "系统未找到 python3 命令，请确保系统已安装 Python 3"
+    exit 1
+fi
+
+# 显示 Python 版本
+PYTHON_VERSION=$("$PYTHON3_BIN" --version 2>&1)
+log "检测到 Python: ${PYTHON_VERSION}"
+log "Python 路径: ${PYTHON3_BIN}"
+
+# 检查 venv 模块是否可用（使用绝对路径）
+if ! "$PYTHON3_BIN" -c "import venv" 2>/dev/null; then
+    log_err "Python venv 模块不可用（需要 python3-venv 包）"
+    log "请执行: apt-get install python3-venv -y"
+    exit 1
+fi
+
+log "✓ Python venv 模块检查通过"
+
+# 安全获取 DATA_DIR 并创建目录（注意：不能创建 TRIM_APPDEST 下的目录，因为此时包还未解压）
+if [ -n "$TRIM_DATA_SHARE_PATHS" ] && [ "$TRIM_DATA_SHARE_PATHS" != ":" ]; then
+    DATA_DIR="${TRIM_DATA_SHARE_PATHS%%:*}"
+else
+    DATA_DIR="${TRIM_PKGVAR:-/tmp}/data"
+fi
+
+mkdir -p "$DATA_DIR" || {
+    log_err "无法创建数据目录: $DATA_DIR"
+    exit 1
+}
+
+log "✓ 目录准备完成（UI 目录将在 install_callback 中创建）"
+
+# 检查磁盘空间（至少需要 100MB）
+AVAILABLE_SPACE=$(df -k "$TRIM_APPDEST" 2>/dev/null | awk 'NR==2 {print $4}')
+if [ -n "$AVAILABLE_SPACE" ] && [ "$AVAILABLE_SPACE" -lt 102400 ]; then
+    log_err "磁盘空间不足 (可用: $((AVAILABLE_SPACE / 1024)) MB，需要至少 100 MB)"
+    exit 1
+fi
+
+log "✓ 磁盘空间检查通过"
+
+log "安装前检查完成！"
+
+exit 0

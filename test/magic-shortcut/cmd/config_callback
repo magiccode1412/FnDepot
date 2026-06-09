@@ -1,0 +1,13 @@
+#!/bin/bash
+
+### This script is called after the user changes configuration in application settings.
+
+echo "配置变更已完成。"
+
+# 如果用户在向导中修改了某些设置，可以在这里处理
+# 目前 magic-shortcut 的主要配置通过 Web 界面处理，
+# 所以这里主要用于日志记录和验证
+
+echo "当前配置已生效，无需额外操作。"
+
+exit 0

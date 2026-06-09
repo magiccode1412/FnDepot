@@ -1,0 +1,47 @@
+#!/bin/bash
+
+### This script is called after the application upgrade.
+
+echo "正在完成升级后处理..."
+
+SERVER_DIR="${TRIM_APPDEST}/server"
+VENV_DIR="$SERVER_DIR/venv"
+
+# 国内 pip 镜像源
+PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+PIP_TRUSTED_HOST="pypi.tuna.tsinghua.edu.cn"
+
+# 获取 python3 绝对路径
+PYTHON3_BIN=$(which python3 2>/dev/null || echo "/usr/bin/python3")
+[ ! -x "$PYTHON3_BIN" ] && PYTHON3_BIN="/usr/bin/python3"
+
+# 重新创建/更新虚拟环境（如果不存在）
+if [ ! -d "$VENV_DIR" ]; then
+    echo "创建新的 Python 虚拟环境..."
+    "$PYTHON3_BIN" -m venv --clear "$VENV_DIR" || exit 1
+    
+    # 安装/验证 pip（使用 python3 -m pip 方式）
+    if ! "$VENV_DIR/bin/python3" -m pip --version 2>/dev/null; then
+        "$VENV_DIR/bin/python3" -m ensurepip --default-pip --upgrade 2>/dev/null || true
+        # 如果 ensurepip 失败，尝试 get-pip.py
+        if ! "$VENV_DIR/bin/python3" -m pip --version 2>/dev/null; then
+            curl -sS https://bootstrap.pypa.io/get-pip.py | "$VENV_DIR/bin/python3" 2>/dev/null || true
+        fi
+    fi
+fi
+
+# 升级依赖包（内联列表，使用 python3 -m pip）
+if [ -x "$VENV_DIR/bin/python3" ]; then
+    echo "更新 Python 依赖..."
+    for pkg in "fastapi==0.104.1" "uvicorn==0.30.1" "python-multipart==0.0.6" "Pillow==10.1.0" "pydantic==2.5.2"; do
+        "$VENV_DIR/bin/python3" -m pip install -i "$PIP_INDEX_URL" --trusted-host "$PIP_TRUSTED_HOST" --quiet --no-cache-dir --upgrade "${pkg}" || true
+    done
+fi
+
+# 设置正确的权限
+chmod -R 755 "${TRIM_APPDEST}/ui/images" 2>/dev/null || true
+
+echo "升级后处理完成！"
+echo "建议重启应用以使用新版本。"
+
+exit 0

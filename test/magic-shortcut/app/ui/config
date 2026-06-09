@@ -1,0 +1,13 @@
+{
+    ".url": {
+        "magic-shortcut.Application": {
+            "title": "快捷方式管理器",
+            "icon": "images/icon_{0}.png",
+            "type": "url",
+            "protocol": "http",
+            "port": "${service_port}",
+            "url": "/",
+            "allUsers": true
+        }
+    }
+}
