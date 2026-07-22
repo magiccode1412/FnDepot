@@ -4,7 +4,7 @@
 
 <a href="https://github.com/magiccode1412/FnDepot" target="_blank">Github</a>
 
-更新日期：2026-05-31
+更新日期：2026-07-22
 
 </div>
 
@@ -25,15 +25,15 @@
 
 | 应用 | 版本 | 平台 | 简介 | 维护者 |
 |------|------|------|------|--------|
-| [日志推送](#日志推送) | 2.2.1 | all | 飞牛日志监控机器人，支持企业微信/钉钉/飞书/Bark/PushPlus等多渠道推送 | Lando |
+| [日志推送](#日志推送) | 2.3.0 | all | 飞牛日志监控机器人，支持企业微信/钉钉/飞书/Bark/PushPlus等多渠道推送 | Lando |
 | [bililivego](#bililivego) | 0.7.39 | all | 支持多种直播平台的直播录制工具 | bililive-go |
 | [bilisync](#bilisync) | 2.11.1 | all | 专为 NAS 用户编写的哔哩哔哩同步工具（Rust & Tokio 驱动） | amtoaer |
-| [ddnsgo](#ddnsgo) | 6.17.1 | all | 自动获得公网 IPv4/IPv6 地址并解析到对应域名服务 | jeessy2 |
+| [ddnsgo](#ddnsgo) | 6.17.2 | all | 自动获得公网 IPv4/IPv6 地址并解析到对应域名服务 | jeessy2 |
 | [qiandao](#qiandao) | 1.0.0 | all | HTTP 请求定时任务自动执行框架（基于 HAR Editor 和 Tornado Server） | qd-today |
-| [青龙面板](#青龙面板) | 2.20.2 | all | 支持 Python3/JavaScript/Shell/TypeScript 的定时任务管理平台 | whyour |
+| [青龙面板](#青龙面板) | 2.21.0 | all | 支持 Python3/JavaScript/Shell/TypeScript 的定时任务管理平台 | whyour |
 | [speedtest](#speedtest) | 6.1.0 | all | 轻量级网络速度测试工具（JavaScript 实现） | librespeed |
-| [splayer](#splayer) | 3.0.0 | all | 简约的音乐播放器 | imsyy |
-| [uptime-kuma](#uptime-kuma) | 2.3.2 | all | 易于使用的自托管监控工具 | louislam |
+| [splayer](#splayer) | 3.1.1 | all | 简约的音乐播放器 | imsyy |
+| [uptime-kuma](#uptime-kuma) | 2.4.0 | all | 易于使用的自托管监控工具 | louislam |
 
 ---
 
@@ -41,7 +41,7 @@
 
 ### 日志推送
 
-- **版本**: 2.1.2
+- **版本**: 2.3.0
 - **平台**: all
 - **维护者**: [Lando](https://github.com/Sunanang/FNMessageBots)
 - **分发者**: [魔法代码](https://github.com/magiccode1412/)
@@ -65,7 +65,7 @@
 
 ### ddnsgo
 
-- **版本**: 6.17.1
+- **版本**: 6.17.2
 - **平台**: all
 - **维护者**: [jeessy2](https://github.com/jeessy2/ddns-go)
 - **分发者**: [魔法代码](https://github.com/magiccode1412)
@@ -81,7 +81,7 @@
 
 ### 青龙面板
 
-- **版本**: 2.20.2
+- **版本**: 2.21.0
 - **平台**: all
 - **维护者**: [whyour](https://github.com/whyour/qinglong)
 - **分发者**: [魔法代码](https://github.com/magiccode1412)
@@ -97,7 +97,7 @@
 
 ### splayer
 
-- **版本**: 3.0.0
+- **版本**: 3.1.1
 - **平台**: all
 - **维护者**: [imsyy](https://github.com/imsyy/SPlayer)
 - **分发者**: [魔法代码](https://github.com/magiccode1412/)
@@ -105,7 +105,7 @@
 
 ### uptime-kuma
 
-- **版本**: 2.3.2
+- **版本**: 2.4.0
 - **平台**: all
 - **维护者**: [louislam](https://github.com/louislam/uptime-kuma)
 - **分发者**: [魔法代码](https://github.com/magiccode1412)
