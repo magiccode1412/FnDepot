@@ -1,7 +1,7 @@
 appname               = magic-splayer
-version               = 3.0.0
+version               = 3.1.1
 display_name          = splayer
-desc                  = 一个简约的音乐播放器
+desc                  = Web端颜值天花板（已归档，只修大bug）
 platform              = all
 source                = thirdparty
 maintainer            = imsyy
@@ -10,4 +10,3 @@ distributor           = 魔法代码
 distributor_url       = https://github.com/magiccode1412/
 desktop_uidir         = ui
 desktop_applaunchname = magic-splayer.Application
-service_port          = ${wizard_app_port}
