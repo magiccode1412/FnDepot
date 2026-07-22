@@ -1,8 +1,8 @@
 services:
   magic-speedtest:
     container_name: magic-speedtest
-    image: docker.cnb.cool/magiccode1412/transfer/speedtest:latest
-    restart: always
+    image: docker.cnb.cool/magiccode1412/transfer/speedtest:master
+    restart: unless-stopped
     network_mode: bridge
     environment:
       MODE: standalone
