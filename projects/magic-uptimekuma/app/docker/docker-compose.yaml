@@ -1,9 +1,9 @@
 services:
   magic-uptimekuma:
     container_name: magic-uptimekuma
-    image: docker.cnb.cool/magiccode1412/transfer/uptime-kuma:latest
+    image: docker.cnb.cool/magiccode1412/transfer/uptime-kuma:2.4.0
     network_mode: bridge
-    restart: always
+    restart: unless-stopped
     ports:
       - ${wizard_app_port}:3001
     volumes:
