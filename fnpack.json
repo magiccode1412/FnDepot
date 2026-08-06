@@ -1,155 +1,290 @@
 {
-  "magic-bililivego": {
-    "display_name": "bililive-go",
-    "platform": "all",
-    "version": "0.7.39",
-    "desc": "一个支持多种直播平台的直播录制工具",
-    "labels": "视频,录屏",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412/",
-    "author": "bililive-go",
-    "author_url": "https://github.com/bililive-go/bililive-go",
-    "bug_report_url": "https://github.com/bililive-go/bililive-go/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "18.5KB",
-    "download_url": "",
-    "changelog": ""
+  "schema_version": "2",
+  "source_info": {
+    "name": "魔法领域",
+    "author": "魔法代码",
+    "homepage": "https://github.com/magiccode1412/FnDepot",
+    "description": "飞牛第三方应用仓库"
   },
-  "magic-bilisync": {
-    "display_name": "bili-sync",
-    "platform": "all",
-    "version": "2.11.1",
-    "desc": "bili-sync 是一款专为 NAS 用户编写的哔哩哔哩同步工具，由 Rust & Tokio 驱动。",
-    "labels": "视频,下载",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412/",
-    "author": "amtoaer",
-    "author_url": "https://github.com/amtoaer/bili-sync",
-    "bug_report_url": "https://github.com/amtoaer/bili-sync/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "42.3KB",
-    "download_url": "",
-    "changelog": ""
-  },
-  "magic-ddnsgo": {
-    "display_name": "ddns-go",
-    "platform": "all",
-    "version": "6.17.2",
-    "desc": "自动获得你的公网 IPv4 或 IPv6 地址，并解析到对应的域名服务",
-    "labels": "DDNS,域名",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412",
-    "author": "jeessy2",
-    "author_url": "https://github.com/jeessy2/ddns-go",
-    "bug_report_url": "https://github.com/jeessy2/ddns-go/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "31.5KB",
-    "download_url": "",
-    "changelog": ""
-  },
-  "magic-fnmessagebot": {
-    "display_name": "日志推送",
-    "platform": "all",
-    "version": "2.3.0",
-    "desc": "飞牛日志监控机器人，专注于实时监控系统事件，精准捕捉关键动态，确保异常与重要信息不遗漏。支持企业微信、钉钉、飞书、Bark、PushPlus等多种漂道灵活推送通知，让系统消息实时触达、一目了然，帮助您随时随地掌握系统运行状态。",
-    "labels": "日志,监控,推送",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412/",
-    "author": "Lando",
-    "author_url": "https://github.com/Sunanang/FNMessageBots",
-    "bug_report_url": "https://github.com/Sunanang/FNMessageBots/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "95.0KB",
-    "download_url": "",
-    "changelog": ""
-  },
-  "magic-qiandao": {
-    "display_name": "qiandao",
-    "platform": "all",
-    "version": "1.0.0",
-    "desc": "一个HTTP请求定时任务自动执行框架 base on HAR Editor and Tornado Server",
-    "labels": "自动化,签到",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412",
-    "author": "qd-today",
-    "author_url": "https://github.com/qd-today/qd",
-    "bug_report_url": "https://github.com/qd-today/qd/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "24.5KB",
-    "download_url": "",
-    "changelog": ""
-  },
-  "magic-qinglong": {
-    "display_name": "青龙面板",
-    "platform": "all",
-    "version": "2.21.0",
-    "desc": "支持 Python3、JavaScript、Shell、Typescript 的定时任务管理平台",
-    "labels": "自动化,脚本,定时任务",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412",
-    "author": "whyour",
-    "author_url": "https://github.com/whyour/qinglong",
-    "bug_report_url": "https://github.com/whyour/qinglong/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "237.5KB",
-    "download_url": "",
-    "changelog": ""
-  },
-  "magic-speedtest": {
-    "display_name": "speedtest",
-    "platform": "all",
-    "version": "6.1.0",
-    "desc": "这是一个非常轻量级的速度测试，用 Javascript 实现，使用 XMLHttpRequest 和 Web Workers。",
-    "labels": "网络,测速",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412",
-    "author": "librespeed",
-    "author_url": "https://github.com/librespeed/speedtest",
-    "bug_report_url": "https://github.com/librespeed/speedtest/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "45.8KB",
-    "download_url": "",
-    "changelog": ""
-  },
-  "magic-splayer": {
-    "display_name": "splayer",
-    "platform": "all",
-    "version": "3.1.1",
-    "desc": "Web端颜值天花板（已归档，只修大bug）",
-    "labels": "音乐",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412/",
-    "author": "imsyy",
-    "author_url": "https://github.com/imsyy/SPlayer",
-    "bug_report_url": "https://github.com/imsyy/SPlayer/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "33.0KB",
-    "download_url": "",
-    "changelog": ""
-  },
-  "magic-uptimekuma": {
-    "display_name": "uptime-kuma",
-    "platform": "all",
-    "version": "2.4.0",
-    "desc": "Uptime Kuma 是一款易于使用的自托管监控工具。",
-    "labels": "监控",
-    "distributor": "魔法代码",
-    "distributor_url": "https://github.com/magiccode1412",
-    "author": "louislam",
-    "author_url": "https://github.com/louislam/uptime-kuma",
-    "bug_report_url": "https://github.com/louislam/uptime-kuma/issues",
-    "isdocker": "true",
-    "install_type": "存储空间",
-    "size": "39.7KB",
-    "download_url": "",
-    "changelog": ""
+  "apps": {
+    "magic-bililivego": {
+      "display_name": "bililive-go",
+      "desc": "一个支持多种直播平台的直播录制工具",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "影音娱乐"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-bililivego.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "bililive-go",
+      "maintainer_url": "https://github.com/bililive-go/bililive-go",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412/",
+      "bug_report_url": "https://github.com/bililive-go/bililive-go/issues",
+      "releases": {
+        "0.7.39": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-bililivego-0.7.39-all.fpk",
+              "sha256": "2b864f3445b2e442f5abb7355740ee29c1802039ea8f864985e6e92358e227a1",
+              "size": 18947
+            }
+          }
+        }
+      }
+    },
+    "magic-bilisync": {
+      "display_name": "bili-sync",
+      "desc": "bili-sync 是一款专为 NAS 用户编写的哔哩哔哩同步工具，由 Rust & Tokio 驱动。",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "影音娱乐"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-bilisync.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "amtoaer",
+      "maintainer_url": "https://github.com/amtoaer/bili-sync",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412/",
+      "bug_report_url": "https://github.com/amtoaer/bili-sync/issues",
+      "releases": {
+        "2.11.1": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-bilisync-2.11.1-all.fpk",
+              "sha256": "77ea1c289a8521aec562a41341d8d70403615b286c2ec525cb7f4fbae6cf44a5",
+              "size": 43298
+            }
+          }
+        }
+      }
+    },
+    "magic-ddnsgo": {
+      "display_name": "ddns-go",
+      "desc": "自动获得你的公网 IPv4 或 IPv6 地址，并解析到对应的域名服务",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "系统工具"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-ddnsgo.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "jeessy2",
+      "maintainer_url": "https://github.com/jeessy2/ddns-go",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412",
+      "bug_report_url": "https://github.com/jeessy2/ddns-go/issues",
+      "releases": {
+        "6.17.2": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-ddnsgo-6.17.2-all.fpk",
+              "sha256": "803847480152529614a43fb442f38f095c5cbb685060966b8c8e7375d9749e4e",
+              "size": 32308
+            }
+          }
+        }
+      }
+    },
+    "magic-fnmessagebot": {
+      "display_name": "日志推送",
+      "desc": "飞牛日志监控机器人，专注于实时监控系统事件，精准捕捉关键动态，确保异常与重要信息不遗漏。支持企业微信、钉钉、飞书、Bark、PushPlus等多种漂道灵活推送通知，让系统消息实时触达、一目了然，帮助您随时随地掌握系统运行状态。",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "系统工具"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-fnmessagebot.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "Lando",
+      "maintainer_url": "https://github.com/Sunanang/FNMessageBots",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412/",
+      "bug_report_url": "https://github.com/Sunanang/FNMessageBots/issues",
+      "releases": {
+        "2.3.0": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-fnmessagebot-2.3.0-all.fpk",
+              "sha256": "336db094885ca5073e5a1dec43ccab6aed0097b4bcf450d042e7f7f789e97b53",
+              "size": 97334
+            }
+          }
+        }
+      }
+    },
+    "magic-qiandao": {
+      "display_name": "qiandao",
+      "desc": "一个HTTP请求定时任务自动执行框架 base on HAR Editor and Tornado Server",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "生活服务"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-qiandao.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "qd-today",
+      "maintainer_url": "https://github.com/qd-today/qd",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412",
+      "bug_report_url": "https://github.com/qd-today/qd/issues",
+      "releases": {
+        "1.0.0": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-qiandao-1.0.0-all.fpk",
+              "sha256": "7e2c07a6f7e17ea9524d5fb39a77eedc70b1a0297c86dc4dbad50bd2286119bc",
+              "size": 25122
+            }
+          }
+        }
+      }
+    },
+    "magic-qinglong": {
+      "display_name": "青龙面板",
+      "desc": "支持 Python3、JavaScript、Shell、Typescript 的定时任务管理平台",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "系统工具"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-qinglong.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "whyour",
+      "maintainer_url": "https://github.com/whyour/qinglong",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412",
+      "bug_report_url": "https://github.com/whyour/qinglong/issues",
+      "releases": {
+        "2.21.0": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-qinglong-2.21.0-all.fpk",
+              "sha256": "e694acd89187efc92503d413164988f1a8bbfd68c116c64768eee35c66cd1488",
+              "size": 243224
+            }
+          }
+        }
+      }
+    },
+    "magic-speedtest": {
+      "display_name": "speedtest",
+      "desc": "这是一个非常轻量级的速度测试，用 Javascript 实现，使用 XMLHttpRequest 和 Web Workers。",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "系统工具"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-speedtest.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "librespeed",
+      "maintainer_url": "https://github.com/librespeed/speedtest",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412",
+      "bug_report_url": "https://github.com/librespeed/speedtest/issues",
+      "releases": {
+        "6.1.0": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-speedtest-6.1.0-all.fpk",
+              "sha256": "894538d39eb87deabfab9210680b03641797166a3d04469916062e8dc21637b9",
+              "size": 46935
+            }
+          }
+        }
+      }
+    },
+    "magic-splayer": {
+      "display_name": "splayer",
+      "desc": "Web端颜值天花板（已归档，只修大bug）",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "影音娱乐"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-splayer.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "imsyy",
+      "maintainer_url": "https://github.com/imsyy/SPlayer",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412/",
+      "bug_report_url": "https://github.com/imsyy/SPlayer/issues",
+      "releases": {
+        "3.1.1": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-splayer-3.1.1-all.fpk",
+              "sha256": "3146f722b9085bb668b70454332da02d63edf2eebec4e5f45a7d16250ee9c062",
+              "size": 33758
+            }
+          }
+        }
+      }
+    },
+    "magic-uptimekuma": {
+      "display_name": "uptime-kuma",
+      "desc": "Uptime Kuma 是一款易于使用的自托管监控工具。",
+      "platform": [
+        "all"
+      ],
+      "categories": [
+        "系统工具"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-uptimekuma.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": true,
+      "maintainer": "louislam",
+      "maintainer_url": "https://github.com/louislam/uptime-kuma",
+      "distributor": "魔法代码",
+      "distributor_url": "https://github.com/magiccode1412",
+      "bug_report_url": "https://github.com/louislam/uptime-kuma/issues",
+      "releases": {
+        "2.4.0": {
+          "changelog": "",
+          "packages": {
+            "all": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-uptimekuma-2.4.0-all.fpk",
+              "sha256": "830786dccea2cc92c059b3235154439a67bbb377f31c74e8b9f37451abcba19e",
+              "size": 40631
+            }
+          }
+        }
+      }
+    }
   }
 }
