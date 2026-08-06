@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "@user_5c85a23c/fnnas-docs": {
+      "name": "fnnas-docs",
+      "zip_url": "https://api.skillhub.cn/api/v1/download?slug=fnnas-docs&namespace=user_5c85a23c",
+      "source": "community",
+      "version": "1.1.0",
+      "namespace": {
+        "canonicalName": "@user_5c85a23c/fnnas-docs",
+        "displayName": "user_5c85a23c",
+        "handle": "user_5c85a23c",
+        "publicSlug": "fnnas-docs"
+      },
+      "internalSlug": "fnnas-docs",
+      "publicSlug": "fnnas-docs",
+      "installDir": "/workspace/.codebuddy/skills/@user_5c85a23c/fnnas-docs"
+    }
+  }
+}
