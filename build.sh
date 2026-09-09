@@ -430,13 +430,16 @@ if os.path.isdir(projects_dir):
         icon_rel = f"assets/icons/{appname}.png"
         icon_url = f"{raw_base}/{icon_rel}"
 
-        # 分类
+        # 分类（V2 规范：最多两个）
         cats = DEFAULT_CATEGORIES.get(appname, ["系统工具"])
         # 校验分类合法性
         for c in cats:
             if c not in VALID_CATEGORIES:
                 print(f"[WARN] {appname} 分类非法: {c}，回退 系统工具", file=sys.stderr)
                 cats = ["系统工具"]
+        if len(cats) > 2:
+            print(f"[WARN] {appname} 分类超过两个: {cats}，仅保留前两个", file=sys.stderr)
+            cats = cats[:2]
 
         entry_data = {
             "display_name": m.get("display_name", ""),
@@ -526,7 +529,9 @@ si = data.get("source_info", {})
 if not si.get("name"): errs.append("source_info.name 为空")
 if not si.get("author"): errs.append("source_info.author 为空")
 for name, app in data.get("apps", {}).items():
-    for c in app.get("categories", []):
+    cats = app.get("categories", [])
+    if len(cats) > 2: errs.append(f"{name}: 分类超过两个 {cats}")
+    for c in cats:
         if c not in VALID_CAT: errs.append(f"{name}: 分类非法 {c}")
     plat = app.get("platform")
     if isinstance(plat, str): plat = [plat]

@@ -1,11 +1,19 @@
-# 云原生开发
-$:
+$: # 兜底匹配所有分支，不被 glob 匹配的分支
   vscode:
     - docker:
-        image: docker.cnb.cool/magiccode1412/universal/fn_dev:latest
+        image: cnbcool/default-dev-env:latest
       services:
-        - vscode
+        - name: vscode
+          options:
+            keepAliveTimeout: 2h
         - docker
+      stages:
+        - name: install fnpack
+          script: |
+            cd /root
+            curl -fsSL -o fnpack https://static2.fnnas.com/fnpack/fnpack-1.2.3-linux-amd64
+            chmod +x fnpack
+            mv fnpack /usr/local/bin/fnpack
 
   push:
     - imports: https://cnb.cool/magiccode1412/secret/-/blob/main/env.yml
