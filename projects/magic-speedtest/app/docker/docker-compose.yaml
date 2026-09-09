@@ -1,7 +1,7 @@
 services:
   magic-speedtest:
     container_name: magic-speedtest
-    image: docker.cnb.cool/magiccode1412/transfer/speedtest:master
+    image: docker.cnb.cool/magiccode1412/transfer/librespeed_speedtest:master
     restart: unless-stopped
     network_mode: bridge
     environment:

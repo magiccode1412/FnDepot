@@ -1,6 +1,6 @@
 services:
   magic-bilisync:
-    image: docker.cnb.cool/magiccode1412/transfer/bili-sync-rs:latest
+    image: docker.cnb.cool/magiccode1412/transfer/amtoaer_bili-sync-rs:latest
     hostname: magic-bilisync
     container_name: magic-bilisync
     restart: always

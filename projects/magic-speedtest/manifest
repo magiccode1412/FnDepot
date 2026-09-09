@@ -1,5 +1,5 @@
 appname               = magic-speedtest
-version               = 6.1.0
+version               = 6.2.1
 display_name          = speedtest
 desc                  = 这是一个非常轻量级的速度测试，用 Javascript 实现，使用 XMLHttpRequest 和 Web Workers。
 platform              = all

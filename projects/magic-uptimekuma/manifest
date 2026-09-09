@@ -1,5 +1,5 @@
 appname               = magic-uptimekuma
-version               = 2.4.0
+version               = 2.5.3
 display_name          = uptime-kuma
 desc                  = Uptime Kuma 是一款易于使用的自托管监控工具。
 platform              = all

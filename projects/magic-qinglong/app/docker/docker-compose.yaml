@@ -1,7 +1,7 @@
 services:
   magic-qinglong:
     container_name: magic-qinglong
-    image: docker.cnb.cool/magiccode1412/transfer/qinglong:latest
+    image: docker.cnb.cool/magiccode1412/transfer/whyour_qinglong:latest
     volumes:
       - ${TRIM_DATA_SHARE_PATHS}/data:/ql/data
     ports:

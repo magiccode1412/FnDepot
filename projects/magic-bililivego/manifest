@@ -1,5 +1,5 @@
 appname               = magic-bililivego
-version               = 0.7.39
+version               = 0.8.2
 display_name          = bililive-go
 desc                  = 一个支持多种直播平台的直播录制工具
 platform              = all

@@ -1,6 +1,6 @@
 services:
   magic-fnmessagebot:
-    image: docker.cnb.cool/magiccode1412/transfer/fn-message-bots:latest
+    image: docker.cnb.cool/magiccode1412/transfer/sunanang_fn-message-bots:latest
     container_name: magic-fnmessagebot
     restart: always
     network_mode: host
