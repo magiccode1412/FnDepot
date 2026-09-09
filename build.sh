@@ -22,10 +22,11 @@ SRC_HOMEPAGE="https://github.com/magiccode1412/FnDepot"
 SRC_DESCRIPTION="飞牛第三方应用仓库"
 
 # ---- 资源 base URL（按 M3/M4/M9 决策）----
-# 分支动态获取（M9）
-GIT_BRANCH="$(git -C "${SCRIPT_DIR}" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")"
+# 分支固定为 main（M9 变更：FnDepot 客户端不支持指定分支，只认仓库默认分支，
+# 动态取当前分支会导致生成出 dev/HEAD 这类客户端无法访问的链接）
+GIT_BRANCH="main"
 # 发布仓库为 GitHub（开发仓库在 cnb.cool，发布时用 GitHub 仓库发布）
-# GitHub raw 格式；分支由 M9 动态获取
+# GitHub raw 格式；分支固定为 main
 RAW_BASE="https://raw.githubusercontent.com/magiccode1412/FnDepot/${GIT_BRANCH}"
 
 # bug_report_url（M5：保留指向各上游 issues；manifest 中无此字段，故在此集中配置）
@@ -291,6 +292,7 @@ output_file    = sys.argv[3]
 icons_dir      = sys.argv[4]
 packages_dir   = sys.argv[5]
 raw_base       = sys.argv[6].rstrip("/")
+branch_segment = raw_base.rsplit("/", 1)[-1]
 src_name       = sys.argv[7]
 src_author     = sys.argv[8]
 src_homepage   = sys.argv[9]
@@ -361,6 +363,35 @@ def sha256_of(path):
         for chunk in iter(lambda: f.read(8192), b""):
             h.update(chunk)
     return h.hexdigest()
+
+# 历史遗留链接可能带旧分支（如 dev、HEAD），需重写为当前配置的分支
+_m = re.match(r"^(https://raw\.githubusercontent\.com/[^/]+/[^/]+)/[^/]+$", raw_base)
+RAW_PREFIX = _m.group(1) if _m else None
+LEGACY_URL_RE = re.compile(r"^" + re.escape(RAW_PREFIX) + r"/[^/]+/") if RAW_PREFIX else None
+
+def rebranch(url):
+    """仅重写本仓库 raw 链接中的分支段，其他域名/仓库的链接原样保留"""
+    if not url or not LEGACY_URL_RE or not isinstance(url, str):
+        return url
+    return LEGACY_URL_RE.sub(lambda m: RAW_PREFIX + "/" + branch_segment + "/", url)
+
+def rebranch_releases(releases):
+    """递归重写 releases 中所有 download_url 的分支段"""
+    if not isinstance(releases, dict):
+        return releases
+    out = {}
+    for ver, rv in releases.items():
+        rv = dict(rv) if isinstance(rv, dict) else rv
+        if isinstance(rv, dict) and isinstance(rv.get("packages"), dict):
+            pkgs = {}
+            for arch, pk in rv["packages"].items():
+                pk = dict(pk) if isinstance(pk, dict) else pk
+                if isinstance(pk, dict) and isinstance(pk.get("download_url"), str):
+                    pk["download_url"] = rebranch(pk["download_url"])
+                pkgs[arch] = pk
+            rv["packages"] = pkgs
+        out[ver] = rv
+    return out
 
 def check_is_docker(app_dir):
     for dc in ["docker-compose.yaml", "docker-compose.yml"]:
@@ -475,10 +506,12 @@ if os.path.isdir(projects_dir):
             for field in MANUAL_FIELDS:
                 old_val = old_entry.get(field, "")
                 if old_val and (not isinstance(old_val, str) or old_val.strip()):
+                    if field == "icon_url":
+                        old_val = rebranch(old_val)
                     entry_data[field] = old_val
-            # 若旧文件已有 releases（含 changelog / 多版本），保留
+            # 若旧文件已有 releases（含 changelog / 多版本），保留，但同步分支段
             if isinstance(old_entry.get("releases"), dict) and old_entry["releases"]:
-                entry_data["releases"] = old_entry["releases"]
+                entry_data["releases"] = rebranch_releases(old_entry["releases"])
 
         fnpack["apps"][appname] = entry_data
         print(f"[INFO] 索引: {appname} v{version} [{platform}] {size_bytes}B {digest[:12]}", file=sys.stderr)

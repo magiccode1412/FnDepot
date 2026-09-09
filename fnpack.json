@@ -16,7 +16,7 @@
       "categories": [
         "影音娱乐"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-bililivego.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-bililivego.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -26,13 +26,13 @@
       "distributor_url": "https://github.com/magiccode1412/",
       "bug_report_url": "https://github.com/bililive-go/bililive-go/issues",
       "releases": {
-        "0.7.39": {
+        "0.8.2": {
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-bililivego-0.7.39-all.fpk",
-              "sha256": "2b864f3445b2e442f5abb7355740ee29c1802039ea8f864985e6e92358e227a1",
-              "size": 18947
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-bililivego-0.8.2-all.fpk",
+              "sha256": "6a104435b47c7f1a2ee011fc8f5e53de92ffbb8ad81a9552712241cffc53b052",
+              "size": 18957
             }
           }
         }
@@ -47,7 +47,7 @@
       "categories": [
         "影音娱乐"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-bilisync.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-bilisync.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -61,9 +61,9 @@
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-bilisync-2.11.1-all.fpk",
-              "sha256": "77ea1c289a8521aec562a41341d8d70403615b286c2ec525cb7f4fbae6cf44a5",
-              "size": 43298
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-bilisync-2.11.1-all.fpk",
+              "sha256": "4ba66802b1d59cf8972e62916c7660285936b3cbfe0040598ed4e8fb4d58cb56",
+              "size": 43295
             }
           }
         }
@@ -78,7 +78,7 @@
       "categories": [
         "系统工具"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-ddnsgo.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-ddnsgo.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -88,13 +88,13 @@
       "distributor_url": "https://github.com/magiccode1412",
       "bug_report_url": "https://github.com/jeessy2/ddns-go/issues",
       "releases": {
-        "6.17.2": {
+        "6.17.7": {
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-ddnsgo-6.17.2-all.fpk",
-              "sha256": "803847480152529614a43fb442f38f095c5cbb685060966b8c8e7375d9749e4e",
-              "size": 32308
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-ddnsgo-6.17.7-all.fpk",
+              "sha256": "e1327ebd42dfdd57c40d1195df795f088e07739810287be9bf3170da28493bdf",
+              "size": 32311
             }
           }
         }
@@ -109,7 +109,7 @@
       "categories": [
         "系统工具"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-fnmessagebot.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-fnmessagebot.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -123,9 +123,9 @@
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-fnmessagebot-2.3.0-all.fpk",
-              "sha256": "336db094885ca5073e5a1dec43ccab6aed0097b4bcf450d042e7f7f789e97b53",
-              "size": 97334
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-fnmessagebot-2.3.0-all.fpk",
+              "sha256": "72834339cff0e3b922bf5f64aae5c5a3b6221d624c4849777edd2e4e89897739",
+              "size": 97347
             }
           }
         }
@@ -140,7 +140,7 @@
       "categories": [
         "生活服务"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-qiandao.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-qiandao.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -154,9 +154,9 @@
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-qiandao-1.0.0-all.fpk",
-              "sha256": "7e2c07a6f7e17ea9524d5fb39a77eedc70b1a0297c86dc4dbad50bd2286119bc",
-              "size": 25122
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-qiandao-1.0.0-all.fpk",
+              "sha256": "fd1ccbb720d3f7c3c3a1d8089afdaed24fcd4dd2a795c5846d989a976d63ec82",
+              "size": 25138
             }
           }
         }
@@ -171,7 +171,7 @@
       "categories": [
         "系统工具"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-qinglong.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-qinglong.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -185,9 +185,9 @@
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-qinglong-2.21.0-all.fpk",
-              "sha256": "e694acd89187efc92503d413164988f1a8bbfd68c116c64768eee35c66cd1488",
-              "size": 243224
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-qinglong-2.21.0-all.fpk",
+              "sha256": "f192e62efff63d5aa5bd54f5df3bcc6cc453cb0dd3b44d4619a6ee7e9b1d3c75",
+              "size": 243223
             }
           }
         }
@@ -202,7 +202,7 @@
       "categories": [
         "系统工具"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-speedtest.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-speedtest.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -212,13 +212,13 @@
       "distributor_url": "https://github.com/magiccode1412",
       "bug_report_url": "https://github.com/librespeed/speedtest/issues",
       "releases": {
-        "6.1.0": {
+        "6.2.1": {
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-speedtest-6.1.0-all.fpk",
-              "sha256": "894538d39eb87deabfab9210680b03641797166a3d04469916062e8dc21637b9",
-              "size": 46935
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-speedtest-6.2.1-all.fpk",
+              "sha256": "5d27c5334a147f6013677ac11b3ed21cd9f6f056ee94b1f9ff64c89fdf41d7f0",
+              "size": 46938
             }
           }
         }
@@ -233,7 +233,7 @@
       "categories": [
         "影音娱乐"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-splayer.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-splayer.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -247,8 +247,8 @@
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-splayer-3.1.1-all.fpk",
-              "sha256": "3146f722b9085bb668b70454332da02d63edf2eebec4e5f45a7d16250ee9c062",
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-splayer-3.1.1-all.fpk",
+              "sha256": "1be315b283a045a7604a274271f0417fc19bf4c9585576ca696d3a9e255ee900",
               "size": 33758
             }
           }
@@ -264,7 +264,7 @@
       "categories": [
         "系统工具"
       ],
-      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/assets/icons/magic-uptimekuma.png",
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-uptimekuma.png",
       "run_as": "package",
       "install_type": "",
       "is_docker": true,
@@ -274,13 +274,13 @@
       "distributor_url": "https://github.com/magiccode1412",
       "bug_report_url": "https://github.com/louislam/uptime-kuma/issues",
       "releases": {
-        "2.4.0": {
+        "2.5.3": {
           "changelog": "",
           "packages": {
             "all": {
-              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/dev/packages/magic-uptimekuma-2.4.0-all.fpk",
-              "sha256": "830786dccea2cc92c059b3235154439a67bbb377f31c74e8b9f37451abcba19e",
-              "size": 40631
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-uptimekuma-2.5.3-all.fpk",
+              "sha256": "ba22b997aef63c684ded69279f529d90a313014f15805ecc22baad647fc56091",
+              "size": 40644
             }
           }
         }
