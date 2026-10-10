@@ -9,8 +9,10 @@ set -euo pipefail
 
 # ======================== 配置区 ========================
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECTS_DIR="${SCRIPT_DIR}/projects"          # 源码目录
-OUTPUT_DIR="${SCRIPT_DIR}"                      # 输出目录（项目根目录）
+# 脚本位于 scripts/ 目录，上一级为项目根目录（构建产物与源码目录均相对项目根）
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+PROJECTS_DIR="${PROJECT_ROOT}/projects"         # 源码目录
+OUTPUT_DIR="${PROJECT_ROOT}"                     # 输出目录（项目根目录）
 FNPACK_JSON="${OUTPUT_DIR}/fnpack.json"         # 全局索引输出路径
 ICONS_DIR="${OUTPUT_DIR}/assets/icons"          # 图标目录
 PACKAGES_DIR="${OUTPUT_DIR}/packages"           # 安装包目录
