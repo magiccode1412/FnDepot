@@ -216,10 +216,15 @@ build_fpk() {
     if [ ! -d "$app_dir" ]; then log_error "源码目录不存在: ${app_dir}"; return 1; fi
     if [ ! -f "${app_dir}/manifest" ]; then log_error "manifest 不存在: ${app_dir}/manifest"; return 1; fi
 
-    log_info "执行: cd ${app_dir} && fnpack build"
-    ( cd "$app_dir" && fnpack build )
-    if [ $? -ne 0 ]; then log_error "fnpack build 失败 ✗"; return 1; fi
-    log_info "fnpack build 成功 ✓"
+    # 预打包模式：目录内已存在 .fpk 则跳过 fnpack build（适用于已有现成 fpk 的应用）
+    if find_fpk_file "$app_dir" "$app_name" >/dev/null 2>&1; then
+        log_info "检测到预打包 fpk，跳过 fnpack build（预打包模式）"
+    else
+        log_info "执行: cd ${app_dir} && fnpack build"
+        ( cd "$app_dir" && fnpack build )
+        if [ $? -ne 0 ]; then log_error "fnpack build 失败 ✗"; return 1; fi
+        log_info "fnpack build 成功 ✓"
+    fi
 
     local fpk_filename
     fpk_filename=$(find_fpk_file "$app_dir" "$app_name") || { log_error ".fpk 未生成"; return 1; }
