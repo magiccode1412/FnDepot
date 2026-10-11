@@ -217,7 +217,9 @@ build_fpk() {
     if [ ! -f "${app_dir}/manifest" ]; then log_error "manifest 不存在: ${app_dir}/manifest"; return 1; fi
 
     # 预打包模式：目录内已存在 .fpk 则跳过 fnpack build（适用于已有现成 fpk 的应用）
+    PREBUILT_FPK=0
     if find_fpk_file "$app_dir" "$app_name" >/dev/null 2>&1; then
+        PREBUILT_FPK=1
         log_info "检测到预打包 fpk，跳过 fnpack build（预打包模式）"
     else
         log_info "执行: cd ${app_dir} && fnpack build"
@@ -270,8 +272,14 @@ assemble_app() {
     local arch="${M_PLATFORM:-all}"
     local dest_fpk="${PACKAGES_DIR}/${real_appname}-${ver}-${arch}.fpk"
 
-    mv -f "$src_fpk" "$dest_fpk"
-    log_info "移动 ${fpk_filename} → packages/$(basename "$dest_fpk") ✓"
+    if [ "${PREBUILT_FPK:-0}" = "1" ]; then
+        # 预打包：复制而非移动，保留 projects/<app>/ 中的原始 fpk，便于下次构建/升级再次识别与复用
+        cp -f "$src_fpk" "$dest_fpk"
+        log_info "复制(预打包) ${fpk_filename} → packages/$(basename "$dest_fpk") ✓"
+    else
+        mv -f "$src_fpk" "$dest_fpk"
+        log_info "移动 ${fpk_filename} → packages/$(basename "$dest_fpk") ✓"
+    fi
 
     return 0
 }
@@ -516,9 +524,11 @@ if os.path.isdir(projects_dir):
                     if field == "icon_url":
                         old_val = rebranch(old_val)
                     entry_data[field] = old_val
-            # 若旧文件已有 releases（含 changelog / 多版本），保留，但同步分支段
+            # 合并 releases：保留旧版本（含 changelog / 多版本历史），同时把当前构建版本并入，避免升级时新版本被丢弃
             if isinstance(old_entry.get("releases"), dict) and old_entry["releases"]:
-                entry_data["releases"] = rebranch_releases(old_entry["releases"])
+                merged = rebranch_releases(old_entry["releases"])
+                merged[version] = entry_data["releases"][version]
+                entry_data["releases"] = merged
 
         fnpack["apps"][appname] = entry_data
         print(f"[INFO] 索引: {appname} v{version} [{platform}] {size_bytes}B {digest[:12]}", file=sys.stderr)
@@ -604,8 +614,30 @@ build_single() {
     local app_dir="${PROJECTS_DIR}/${app_name}"
     log_step "开始构建应用: ${app_name}"
     if [ ! -d "$app_dir" ]; then log_error "应用目录不存在: ${app_dir}"; return 1; fi
+
+    # 解析 manifest 取得 appname / version（用于版本比对，决定是否需要重建）
+    parse_manifest "$app_dir" || true
+    local real_appname="${M_APPNAME:-$app_name}"
+    local cur_version="${M_VERSION:-}"
+
+    # 版本未变 → 视为源码未改（升级必改 manifest 的 version），跳过构建与移动，避免无意义的覆盖与仓库抖动
+    # 额外要求 packages/ 中对应 fpk 仍存在，避免 clean_fpk 清空后被判为"已构建"而漏构建
+    local ver="${M_VERSION:-unknown}"
+    local arch="${M_PLATFORM:-all}"
+    local dest_fpk="${PACKAGES_DIR}/${real_appname}-${ver}-${arch}.fpk"
+    local sig_file="${app_dir}/.built_version"
+    if [ -n "$cur_version" ] && [ -f "$sig_file" ] && [ -f "$dest_fpk" ]; then
+        local built_version
+        built_version=$(cat "$sig_file" 2>/dev/null || echo "")
+        if [ "$built_version" = "$cur_version" ]; then
+            log_info "版本未变 (${cur_version})，跳过构建与移动: ${real_appname}"
+            return 0
+        fi
+    fi
+
     build_fpk "$app_name" || { log_error "打包失败: ${app_name}"; return 1; }
     assemble_app "$app_name"
+    [ -n "$cur_version" ] && echo "$cur_version" > "$sig_file"
     log_info "应用 ${app_name} 构建完成 ✓"
     return 0
 }
