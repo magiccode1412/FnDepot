@@ -1,0 +1,14 @@
+appname               = magic-dombridge
+version               = 1.0.6
+display_name          = 域桥
+desc                  = 自托管的域名与 DNS 统一管理面板，打通多平台域名 API，集中维护跨服务商解析记录。
+platform              = x86
+source                = thirdparty
+maintainer            = 魔法代码
+maintainer_url        = https://cnb.cool/magiccode1412/dombridge
+distributor           = 魔法代码
+distributor_url       = https://cnb.cool/magiccode1412/dombridge
+desktop_uidir         = ui
+desktop_applaunchname = dombridge.Application
+service_port          = 20001
+ctl_stop              = true

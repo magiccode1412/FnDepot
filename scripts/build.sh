@@ -497,7 +497,7 @@ if os.path.isdir(projects_dir):
                 version: {
                     "changelog": "",
                     "packages": {
-                        "all": {
+                        platform: {
                             "download_url": download_url,
                             "sha256": digest,
                             "size": size_bytes,
