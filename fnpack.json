@@ -31,8 +31,8 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-bililivego-0.8.2-all.fpk",
-              "sha256": "6a104435b47c7f1a2ee011fc8f5e53de92ffbb8ad81a9552712241cffc53b052",
-              "size": 18957
+              "sha256": "1cc04e84448290bd8e57d05079b012335c531db9d68ca4f0c47cdea86589d946",
+              "size": 18954
             }
           }
         }
@@ -62,8 +62,8 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-bilisync-2.11.1-all.fpk",
-              "sha256": "4ba66802b1d59cf8972e62916c7660285936b3cbfe0040598ed4e8fb4d58cb56",
-              "size": 43295
+              "sha256": "171f81176eca75c19c924f8c8892bdc5995dbadc939bd6da2eedd03ec22ebdf7",
+              "size": 43304
             }
           }
         }
@@ -93,8 +93,39 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-ddnsgo-6.17.7-all.fpk",
-              "sha256": "e1327ebd42dfdd57c40d1195df795f088e07739810287be9bf3170da28493bdf",
-              "size": 32311
+              "sha256": "50b9c62a0f8b94094977cad95ee43a5b409a8e28957f7402a6afb5583230ba1f",
+              "size": 32314
+            }
+          }
+        }
+      }
+    },
+    "magic-dombridge": {
+      "display_name": "域桥",
+      "desc": "自托管的域名与 DNS 统一管理面板，打通多平台域名 API，集中维护跨服务商解析记录。",
+      "platform": [
+        "x86"
+      ],
+      "categories": [
+        "系统工具"
+      ],
+      "icon_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/assets/icons/magic-dombridge.png",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": false,
+      "maintainer": "魔法代码",
+      "maintainer_url": "https://cnb.cool/magiccode1412/dombridge",
+      "distributor": "魔法代码",
+      "distributor_url": "https://cnb.cool/magiccode1412/dombridge",
+      "bug_report_url": "https://cnb.cool/magiccode1412/dombridge/-/issues",
+      "releases": {
+        "1.0.6": {
+          "changelog": "https://dombridge.160621.xyz/guide/changelog",
+          "packages": {
+            "x86": {
+              "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-dombridge-1.0.6-x86.fpk",
+              "sha256": "2a4d46397f337587ec7c95cab4a7b333cb3c2870299388d01ba5d215d77cd5e2",
+              "size": 9462103
             }
           }
         }
@@ -124,8 +155,8 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-fnmessagebot-2.3.0-all.fpk",
-              "sha256": "72834339cff0e3b922bf5f64aae5c5a3b6221d624c4849777edd2e4e89897739",
-              "size": 97347
+              "sha256": "d313b6c44365171678017015939a03a1781531a72ccbf1946b8044554e65eef6",
+              "size": 97351
             }
           }
         }
@@ -155,7 +186,7 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-qiandao-1.0.0-all.fpk",
-              "sha256": "fd1ccbb720d3f7c3c3a1d8089afdaed24fcd4dd2a795c5846d989a976d63ec82",
+              "sha256": "6daf638b3694b7a90b3828414d43eb8a34b2bf0dbca57ad192f5bc33b5ac610a",
               "size": 25138
             }
           }
@@ -186,8 +217,8 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-qinglong-2.21.0-all.fpk",
-              "sha256": "f192e62efff63d5aa5bd54f5df3bcc6cc453cb0dd3b44d4619a6ee7e9b1d3c75",
-              "size": 243223
+              "sha256": "f9aeb751270a17d688beca4f32544dbf4f7a7ec74dea882a5bbaf6e54eeea7cf",
+              "size": 243226
             }
           }
         }
@@ -217,8 +248,8 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-speedtest-6.2.1-all.fpk",
-              "sha256": "5d27c5334a147f6013677ac11b3ed21cd9f6f056ee94b1f9ff64c89fdf41d7f0",
-              "size": 46938
+              "sha256": "2ec552e6263a4a06ffc1198caea702d3b0f5bba0940e6c4f6955f5ff992bb313",
+              "size": 46942
             }
           }
         }
@@ -248,7 +279,7 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-splayer-3.1.1-all.fpk",
-              "sha256": "1be315b283a045a7604a274271f0417fc19bf4c9585576ca696d3a9e255ee900",
+              "sha256": "ebfb7ccd19942689de0b0daa7c0b89a0ec09624774bb2fcd5eaca57b415895df",
               "size": 33758
             }
           }
@@ -279,8 +310,8 @@
           "packages": {
             "all": {
               "download_url": "https://raw.githubusercontent.com/magiccode1412/FnDepot/main/packages/magic-uptimekuma-2.5.3-all.fpk",
-              "sha256": "ba22b997aef63c684ded69279f529d90a313014f15805ecc22baad647fc56091",
-              "size": 40644
+              "sha256": "68297fac7ec0e2a38eb989dac4b772bfc6efa9e43d0254c1166b890f05b205d5",
+              "size": 40651
             }
           }
         }

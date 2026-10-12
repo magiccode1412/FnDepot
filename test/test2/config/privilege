@@ -1,8 +1,0 @@
-{
-    "defaults":
-    {
-        "run-as": "package"
-    },
-    "username": "docker-magic-nginx",
-    "groupname": "docker-magic-nginx"
-}
