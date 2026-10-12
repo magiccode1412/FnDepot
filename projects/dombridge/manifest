@@ -1,4 +1,4 @@
-appname               = magic-dombridge
+appname               = dombridge
 version               = 1.0.6
 display_name          = 域桥
 desc                  = 自托管的域名与 DNS 统一管理面板，打通多平台域名 API，集中维护跨服务商解析记录。
